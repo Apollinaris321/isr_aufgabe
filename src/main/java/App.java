@@ -70,7 +70,9 @@ public class App
         List<String> fileNames = readFileNames(sourceDir);
         for(String filename : fileNames){
             String cleanedName = cleanFileName(filename);
-            moveFile(sourceDir + "/" + filename, targetDir, cleanedName);
+            if(cleanedName != null){
+                moveFile(sourceDir + "/" + filename, targetDir, cleanedName);
+            }
         }
     }
 
