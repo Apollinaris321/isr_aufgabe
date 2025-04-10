@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <!-- Define log file path relative to where tests run (usually project root) -->
+        <Property name="logPath">target</Property>
+        <Property name="logFile">test-protocoll.log</Property>
+    </Properties>
+    <Appenders>
+        <!-- Console Appender -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <!-- File Appender for Tests -->
+        <File name="TestFile" fileName="${logPath}/${logFile}" append="false"> <!-- append=false to clear log each run -->
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+    </Appenders>
+    <Loggers>
+        <!-- Route logs from your App class -->
+        <Logger name="App" level="debug" additivity="false">
+            <AppenderRef ref="TestFile"/>
+            <AppenderRef ref="Console"/>
+        </Logger>
+
+        <!-- Root logger directs all other logs -->
+        <Root level="info"> <!-- Set level as needed -->
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="TestFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
